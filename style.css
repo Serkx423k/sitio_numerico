@@ -52,6 +52,7 @@ nav ul a {
 }
 
 nav ul a:hover { color: #fff; }
+nav ul a.active { color: #fff; font-weight: 600; }
 
 /* ── Main ────────────────────────────────────────────── */
 main {
@@ -119,4 +120,176 @@ footer {
   font-size: 0.85rem;
   color: #888;
   border-top: 1px solid #ddd;
+}
+
+/* ── Description (index.html) ────────────────────────── */
+.description {
+  text-align: left;
+  padding: 2.5rem 1rem 1rem;
+}
+
+.description h1 {
+  font-size: 2.4rem;
+  margin-bottom: 1.8rem;
+  color: #1a1a2e;
+  text-align: center;
+}
+
+.description p {
+  font-size: 1.05rem;
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: 1.2rem;
+}
+
+.description .math-block {
+  margin: 1.4rem 0;
+  overflow-x: auto;
+}
+
+.description ol {
+  color: #444;
+  font-size: 1.05rem;
+  line-height: 1.9;
+  margin: 0.6rem 0 1.2rem 1.6rem;
+}
+
+.description ol li {
+  margin-bottom: 0.4rem;
+}
+
+/* ── Code frame (implementacion.html) ────────────────── */
+.code-section {
+  padding: 2.5rem 1rem;
+}
+
+.code-section h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #1a1a2e;
+}
+
+.code-section .subtitle {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 1.8rem;
+  line-height: 1.6;
+}
+
+.code-frame {
+  border: 1px solid #d0d0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(26, 26, 46, 0.08);
+  background: #1e1e2e;
+}
+
+.code-frame-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #13131f;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid #2e2e4e;
+}
+
+.code-frame-bar .filename {
+  color: #a0a0c0;
+  font-size: 0.85rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.02em;
+}
+
+.bar-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.bar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #2a2a44;
+  color: #c0c0e0;
+  border: 1px solid #3a3a5e;
+  border-radius: 5px;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.bar-btn:hover {
+  background: #1a1a2e;
+  color: #fff;
+}
+
+.bar-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.bar-btn.copied {
+  background: #1a3a2e;
+  color: #a6e3a1;
+  border-color: #a6e3a1;
+}
+
+.code-frame-body {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 600px;
+}
+
+.code-frame-body pre {
+  margin: 0;
+  padding: 1.2rem 1.4rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: #cdd6f4;
+  white-space: pre;
+  tab-size: 4;
+}
+
+
+.video-section {
+  padding: 2.5rem 1rem;
+}
+
+.video-section h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #1a1a2e;
+}
+
+.video-section .subtitle {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 1.8rem;
+  line-height: 1.6;
+}
+
+.video-frame {
+  border: 1px solid #d0d0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(26, 26, 46, 0.08);
+  background: #000;
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+}
+
+.video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
 }

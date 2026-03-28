@@ -1,63 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ANC-4</title>
-  <link rel="stylesheet" href="./style.css" />
-</head>
-<body>
 
-  <header>
-    <nav>
-      <span class="logo">Análisis Numérico y Computación Científica</span>
-      <ul>
-        <li><a href="./index.html">Descripci&oacute;n</a></li>
-        <li><a href="./implementacion.html">Implementaci&oacute;n</a></li>
-        <li><a href="./video.html">Video</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <section class="code-section">
-      <h1>Implementaci&oacute;n en MATLAB</h1>
-      <p class="subtitle">
-        C&oacute;digo fuente de la simulaci&oacute;n de trayectoria de vuelo comercial
-        usando splines c&uacute;bicos 3D con velocidad variable y turbulencia arm&oacute;nica.
-      </p>
-
-      <div class="code-frame">
-        <div class="code-frame-bar">
-          <span class="filename">splines3D.m</span>
-          <div class="bar-actions">
-            <button class="bar-btn" id="btn-copy" onclick="copyCode()">
-              <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3
-                4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9
-                2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-              Copiar
-            </button>
-            <a class="bar-btn" id="btn-download" download="splines3D.m">
-              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-14 9v2h14v-2H5z"/></svg>
-              Descargar .m
-            </a>
-          </div>
-        </div>
-        <div class="code-frame-body">
-          <pre id="code-content"></pre>
-        </div>
-      </div>
-
-    </section>
-  </main>
-
-  <footer>
-     <p>&copy; 2026 Análisis Numérico y Computacón Científica - Universidad del Rosario . Hosted on GitHub Pages.</p>
-  </footer>
-
-  <script src="./script.js"></script>
-  <script>
-    document.getElementById('code-content').textContent = `
 clear; clc; close all;
 
 
@@ -358,7 +299,7 @@ function [coef, S_eval] = spline_cubico2(x_data, y_data, x_eval)
     b(row) = 0;
 
     % Resolver sistema
-    u = A \\ b;
+    u = A \ b;
 
     % Organizar coeficientes [a b c d] por intervalo
     coef = zeros(n, 4);
@@ -389,7 +330,4 @@ function [coefX, coefY, coefZ, xs, ys, zs] = spline_cubico3D(t, x, y, z, t_eval)
     [coefX, xs] = spline_cubico2(t, x, t_eval);
     [coefY, ys] = spline_cubico2(t, y, t_eval);
     [coefZ, zs] = spline_cubico2(t, z, t_eval);
-end`;
-  </script>
-</body>
-</html>
+end

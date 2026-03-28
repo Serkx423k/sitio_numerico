@@ -1,16 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ANC-4</title>
   <link rel="stylesheet" href="./style.css" />
+
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true  },
+        { left: '$',  right: '$',  display: false }
+      ]
+    });">
+  </script>
 </head>
 <body>
 
   <header>
     <nav>
-      <span class="logo">ANC-4</span>
+      <span class="logo">Análisis Numérico y Computación Científica</span>
       <ul>
         <li><a href="./index.html">Descripción</a></li>
         <li><a href="./implementacion.html">Implementación</a></li>
@@ -20,14 +32,89 @@
   </header>
 
   <main>
-    <section class="hero">
+    <section class="description">
+
       <h1>Implementación método Splines 3D</h1>
-      <p>Descripción</p>
+
+      <p>
+        Con este código buscamos simular y reconstruir la trayectoria de un vuelo comercial en 3D
+        a partir de datos de tipo GPS, incorporando fenómenos reales, tomando en cuenta variables
+        como la velocidad variable en el tiempo, la altitud con comportamiento suave y una
+        trayectoria horizontal curva.
+      </p>
+
+      <p>
+        Esto lo realizaremos por medio de interpolación polinomial, más específicamente con el
+        método de <em>splines</em> 3D. Esto se debe a que el uso de <em>splines</em> cúbicos
+        paramétricos en 3D es adecuado para la reconstrucción de trayectorias de vuelo, ya que
+        garantizan continuidad hasta la segunda derivada, lo cual es consistente con las leyes
+        físicas del movimiento. Además, estos <em>splines</em> minimizan funcionales de energía
+        asociados a la curvatura, produciendo trayectorias suaves y estables. Su formulación local
+        evita oscilaciones numéricas y permite trabajar con particiones temporales no uniformes,
+        lo que los hace especialmente apropiados para modelar sistemas dinámicos con velocidad
+        variable y datos ruidosos.
+      </p>
+
+      <p>
+        Sabemos que los <em>splines</em> cúbicos usualmente tienen la siguiente forma:
+      </p>
+
+      <div class="math-block">
+        $$s_i(x)=a_i + b_i(x-x_i) + c_i(x-x_i)^2 + d_i(x-x_i)^3$$
+      </div>
+
+      <p>
+        Podemos notar que, para $n$ puntos de datos y con $i=0,1,2,\dots,n-1$, existen $n-1$
+        intervalos y, con esto, $4(n-1)$ constantes que desconocemos, las cuales están asociadas
+        a los coeficientes del polinomio, es decir, $(a,b,c,d)$. Por ende, necesitamos $4(n-1)$
+        ecuaciones que nos permitan encontrar estas constantes.
+      </p>
+
+      <p>Las ecuaciones que usaremos son las siguientes:</p>
+
+      <ol>
+        <li>
+          $s(x)$ es un polinomio cúbico, el cual se denota como $s_j(x)$ en el intervalo
+          $[x_j,x_{j+1}]$ para $j=0,1,2,\dots,n-1$.
+        </li>
+        <li>
+          $S_j(x_j)= f(x_j)$ y $S_j(x_{j+1})=f(x_{j+1})$ para $j=0,1,2,\dots,n-1$.
+        </li>
+        <li>
+          $S_{j+1}(x_{j+1})=S_j(x_{j+1})$ para $j=0,1,2,\dots,n-2$.
+        </li>
+        <li>
+          $S'_{j+1}(x_{j+1})=S'_j(x_{j+1})$ para $j=0,1,2,\dots,n-2$.
+        </li>
+        <li>
+          $S''_{j+1}(x_{j+1})=S''_j(x_{j+1})$ para $j=0,1,2,\dots,n-2$.
+        </li>
+        <li>
+          Se cumple una de las siguientes condiciones de frontera:
+          $S''(x_0)=S''(x_n)=0$ o $S'(x_0)=f'(x_0)$, $S'(x_n)=f'(x_n)$.
+        </li>
+      </ol>
+
+      <p>
+        Para aplicar <em>splines</em> cúbicos en 3D usaremos este mismo método; sin embargo,
+        buscaremos generar una curva paramétrica:
+      </p>
+
+      <div class="math-block">
+        $$r(t)=(x(t),y(t),z(t))$$
+      </div>
+
+      <p>
+        donde cada una de las componentes es un <em>spline</em> cúbico que satisface de forma
+        independiente las condiciones anteriormente mencionadas, y realizamos la interpolación
+        de los puntos $(x,y,z)\in \mathbb{R}^3$.
+      </p>
+
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2026 ANC-4 . Hosted on GitHub Pages.</p>
+   <p>&copy; 2026 Análisis Numérico y Computacón Científica - Universidad del Rosario . Hosted on GitHub Pages.</p>
   </footer>
 
   <script src="./script.js"></script>
